@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var $ = require('jquery'),
+                Q = require('q'),
+                _ = require('lodash'),
+                Db = require('mongodb').Db,
+                MongoClient = require('mongodb').MongoClient,
+                Server = require('mongodb').Server,
+                ReplSetServers = require('mongodb').ReplSetServers,
+                ObjectID = require('mongodb').ObjectID,
+                Binary = require('mongodb').Binary,
+                GridStore = require('mongodb').GridStore,
+                Grid = require('mongodb').Grid,
+                Code = require('mongodb').Code,
+                BSON = require('mongodb').pure().BSON,
+                assert = require('assert');
+
+        $(function () {
+
+            var db = new Db('test', new Server('localhost', 27017));
+            var db_open = Q.denodeify(db.open);
+            db_open.done(function(db){
+                $('body').append('<p>Connected correctly to server</p>');
+            },function(err){
+
+            });
+
+//            var url = 'mongodb://localhost:27017/myproject';
+//            // Use connect method to connect to the Server
+//            MongoClient.connect(url, function (err, db) {
+//                assert.equal(null, err);
+//                $('body').append('<p>Connected correctly to server</p>');
+//                db.close();
+//            });
+//
+//            $('#connect').click(function () {
+//                $('#connectionString').text()
+//            });
+
+
+        });
+
+    </script>
+</head>
+<body>
+<h1>mongo-kit</h1>
+We are using node.js
+<script>document.write(process.version);</script>
+
+<input id="connectionString" type="text" value="mongodb://localhost:27017/myproject">
+<input id="connect" type="button"/>
+<br/>
+<textarea id="console"></textarea>
+
+</body>
+</html>
